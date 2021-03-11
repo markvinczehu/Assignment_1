@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using HandlePeopleWithLogIn.Auth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HandlePeopleWithLogIn.Data;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace HandlePeopleWithLogIn
 {
@@ -28,7 +31,19 @@ namespace HandlePeopleWithLogIn
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            services.AddScoped<IUserService, InMemoryUserService>();
+            services.AddAuthorization(options => {
+                options.AddPolicy("MustBeTeacher",  a => 
+                    a.RequireAuthenticatedUser().RequireClaim("Role", "Teacher"));
+            
+                options.AddPolicy("SecurityLevel2", policy =>
+                    policy.RequireAuthenticatedUser().RequireAssertion(context => {
+                        Claim levelClaim = context.User.FindFirst(claim => claim.Type.Equals("Level"));
+                        if (levelClaim == null) return false;
+                        return int.Parse(levelClaim.Value) >= 2;
+                    }));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -82,6 +82,20 @@ using HandlePeopleWithLogIn.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\Mark\Desktop\DNP\Assignment_1\HandlePeopleWithLogIn\_Imports.razor"
+using Radzen.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\Mark\Desktop\DNP\Assignment_1\HandlePeopleWithLogIn\_Imports.razor"
+using Radzen;
+
+#line default
+#line hidden
+#nullable disable
     public partial class _Imports : System.Object
     {
         #pragma warning disable 1998

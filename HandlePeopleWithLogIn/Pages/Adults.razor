@@ -1,0 +1,39 @@
+﻿@page "/adults"
+@using Persistence
+@using Models
+
+@inject FileContext FileContext
+
+<h3>Adults</h3>
+
+<RadzenDataList WrapItems="true" AllowPaging="true" Data="" TItem="">
+    <Template Context="order">
+        <RadzenCard Style="width:300px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>Company:</div>
+                    <b>@order.Customer?.CompanyName</b>
+                    <div style="margin-top:20px">Employee:</div>
+                    <b>@(order.Employee?.FirstName + " " + order.Employee?.LastName)</b>
+                    <br />
+                </div>
+                <div class="col-md-6">
+                    <div>Freight:</div>
+                    <div style="margin-top:20px">Ship country:</div>
+                    <b>@(order.ShipCountry)</b>
+                    <div style="margin-top:20px">Ship city:</div>
+                    <b>@(order.ShipCity)</b>
+                    <div style="margin-top:20px">Ship name:</div>
+                    <b>@(order.ShipName)</b>
+                </div>
+            </div>
+
+        </RadzenCard>
+    </Template>
+</RadzenDataList>
+
+@code {
+    private IList<Adult> adults;
+    
+    
+}

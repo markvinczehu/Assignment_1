@@ -82,6 +82,27 @@ using HandlePeopleWithLogIn.Shared;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 11 "C:\Users\Mark\Desktop\DNP\Assignment_1\HandlePeopleWithLogIn\_Imports.razor"
+using Radzen.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\Mark\Desktop\DNP\Assignment_1\HandlePeopleWithLogIn\_Imports.razor"
+using Radzen;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 1 "C:\Users\Mark\Desktop\DNP\Assignment_1\HandlePeopleWithLogIn\Shared\MainLayout.razor"
+using LoginComponent;
+
+#line default
+#line hidden
+#nullable disable
     public partial class MainLayout : LayoutComponentBase
     {
         #pragma warning disable 1998
@@ -89,6 +110,29 @@ using HandlePeopleWithLogIn.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 23 "C:\Users\Mark\Desktop\DNP\Assignment_1\HandlePeopleWithLogIn\Shared\MainLayout.razor"
+       
+
+    [CascadingParameter] 
+    protected Task<AuthenticationState> AuthStat { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        var user = (await AuthStat).User;
+        if(!user.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo($"/login");
+            // NavigationManager.NavigateTo($"/Login?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}");
+        }
+    }
+
+
+#line default
+#line hidden
+#nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591
