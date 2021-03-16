@@ -3,37 +3,143 @@
 @using Models
 
 @inject FileContext FileContext
+@inject NavigationManager NavigationManager
 
 <h3>Adults</h3>
+<p> 
+    Filter by ID: <input type="number" @oninput="@(arg => FilterById(arg))" style="width: 50px"/>
+</p>
+<p> 
+    Filter by Firstname: <input type="text" @oninput="@(arg => FilterByFirstName(arg))" style="width: 150px"/>
+</p>
+<p> 
+    Filter by Lastname: <input type="text" @oninput="@(arg => FilterByLastName(arg))" style="width: 150px"/>
+</p>
 
-<RadzenDataList WrapItems="true" AllowPaging="true" Data="" TItem="">
-    <Template Context="order">
-        <RadzenCard Style="width:300px;">
-            <div class="row">
-                <div class="col-md-6">
-                    <div>Company:</div>
-                    <b>@order.Customer?.CompanyName</b>
-                    <div style="margin-top:20px">Employee:</div>
-                    <b>@(order.Employee?.FirstName + " " + order.Employee?.LastName)</b>
-                    <br />
-                </div>
-                <div class="col-md-6">
-                    <div>Freight:</div>
-                    <div style="margin-top:20px">Ship country:</div>
-                    <b>@(order.ShipCountry)</b>
-                    <div style="margin-top:20px">Ship city:</div>
-                    <b>@(order.ShipCity)</b>
-                    <div style="margin-top:20px">Ship name:</div>
-                    <b>@(order.ShipName)</b>
-                </div>
-            </div>
-
-        </RadzenCard>
-    </Template>
-</RadzenDataList>
-
+@if (adultsToShow == null)
+    {
+    <p>
+        <em>Loading...</em>
+    </p>
+    } 
+    else if (!adultsToShow.Any())
+    {
+        <p>
+            <em>No Adult items exist. Please add some.</em>
+        </p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Job title</th>
+                <th>Remove</th>
+                <th>Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in adultsToShow)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.JobTitle</td>
+                    <td>
+                        <button @onclick="@(() => RemoveAdult(item.Id))">
+                            <i class="oi oi-trash" style="color: red"/>
+                        </button>
+                    </td>
+                    <td>
+                        <button @onclick="@(() => Edit(item.Id))">
+                            <i class="oi oi-pencil" style="color: #1b6ec2"/>
+                        </button>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
 @code {
-    private IList<Adult> adults;
+    private IList<Adult> allAdults;
+    private IList<Adult> adultsToShow;
+
+    private int? filterById;
+    private string? filterByFirstName;
+    private string? filterByLastName;
+
+    protected override async Task OnInitializedAsync()
+    {
+        allAdults = FileContext.Adults;
+        adultsToShow = allAdults;
+    }
+
+    private void RemoveAdult(int todoId)
+    {
+        Adult adultToRemove = allAdults.First(t => t.Id == todoId);
+        // TodosData.RemoveTodo(todoId);
+        allAdults.Remove(adultToRemove);
+        adultsToShow.Remove(adultToRemove);
+    }
+
+    private void FilterById(ChangeEventArgs changeEventArgs)
+    {
+        filterById = null;
+        try
+        {
+            filterById = int.Parse(changeEventArgs.Value.ToString());
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+        ExecuteFilter();
+    }
     
+    private void FilterByFirstName(ChangeEventArgs changeEventArgs)
+    {
+        filterByFirstName = null;
+        try
+        {
+            filterByFirstName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+        ExecuteFilter();
+    }
+    
+    private void FilterByLastName(ChangeEventArgs changeEventArgs)
+    {
+        filterByLastName = null;
+        try
+        {
+            filterByLastName = changeEventArgs.Value.ToString();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+        ExecuteFilter();
+    }
+
+    private void ExecuteFilter()
+    {
+        adultsToShow = allAdults.Where(t => 
+            (filterById != null && t.Id == filterById || filterById == null) &&
+            (filterByFirstName != null && t.FirstName == filterByFirstName || filterByFirstName == null) && 
+            (filterByLastName != null && t.LastName == filterByLastName || filterByLastName == null)
+            ).ToList();
+    }
+
+    private void Edit(int id)
+    {
+        NavigationManager.NavigateTo($"EditAdults/{id}");
+    }
     
 }

@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HandlePeopleWithLogIn.Data;
 using Microsoft.AspNetCore.Components.Authorization;
+using Persistence;
 
 namespace HandlePeopleWithLogIn
 {
@@ -44,6 +45,7 @@ namespace HandlePeopleWithLogIn
                         return int.Parse(levelClaim.Value) >= 2;
                     }));
             });
+            services.AddSingleton<FileContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

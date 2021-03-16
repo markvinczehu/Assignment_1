@@ -7,7 +7,7 @@ using Models;
 
 namespace Persistence
 {
-    public class FileContext : IAdultService
+    public class FileContext
     {
         public IList<Family> Families { get; private set; }
         public IList<Adult> Adults { get; private set; }
