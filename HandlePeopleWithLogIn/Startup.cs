@@ -46,6 +46,7 @@ namespace HandlePeopleWithLogIn
                     }));
             });
             services.AddSingleton<FileContext>();
+            services.AddScoped<IDataService, DataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

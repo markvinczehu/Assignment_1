@@ -1,4 +1,4 @@
-﻿@page "/EditAdults"
+﻿@page "/EditAdults/{Id:int}"
 
 @using Models
 @using HandlePeopleWithLogIn.Data
@@ -23,19 +23,19 @@ else
         </div>
         <div class="form-group">
             Firstname:<br/>
-            <InputTextArea rows="4" @bind-Value="adultToEdit.FirstName"/>
+            <InputText rows="4" @bind-Value="adultToEdit.FirstName"/>
         </div>
         <div class="form-group">
             Lastname:<br/>
-            <InputTextArea rows="4" @bind-Value="adultToEdit.LastName"/>
+            <InputText rows="4" @bind-Value="adultToEdit.LastName"/>
         </div>
         <div class="form-group">
             Eye colour:<br/>
-            <InputTextArea rows="4" @bind-Value="adultToEdit.EyeColor"/>
+            <InputText rows="4" @bind-Value="adultToEdit.EyeColor"/>
         </div>
         <div class="form-group">
             Hair colour:<br/>
-            <InputTextArea rows="4" @bind-Value="adultToEdit.HairColor"/>
+            <InputText rows="4" @bind-Value="adultToEdit.HairColor"/>
         </div>
         <div class="form-group">
             Age:<br/>
@@ -51,7 +51,7 @@ else
         </div>
         <div class="form-group">
             Sex:<br/>
-        <InputTextArea rows="4" @bind-value="adultToEdit.Sex"/>
+        <InputText rows="4" @bind-value="adultToEdit.Sex"/>
         </div>
         <p class="actions">
             <button class="btn btn-outline-dark" type="submit">Save</button>

@@ -1,9 +1,11 @@
-﻿@page "/adults"
+﻿@page "/Adults"
 @using Persistence
 @using Models
+@using HandlePeopleWithLogIn.Data
 
 @inject FileContext FileContext
 @inject NavigationManager NavigationManager
+@inject IDataService DataService
 
 <h3>Adults</h3>
 <p> 
@@ -36,6 +38,7 @@
                 <th>ID</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
+                <th>Job</th>
                 <th>Sex</th>
                 <th>Remove</th>
                 <th>Edit</th>
@@ -48,6 +51,7 @@
                     <td>@item.Id</td>
                     <td>@item.FirstName</td>
                     <td>@item.LastName</td>
+                    <td>@item.JobTitle.JobTitle</td>
                     <td>@item.Sex</td>
                     <td>
                         <button @onclick="@(() => RemoveAdult(item.Id))">
@@ -74,14 +78,14 @@
 
     protected override async Task OnInitializedAsync()
     {
-        allAdults = FileContext.Adults;
+        allAdults = DataService.GetAdults();
         adultsToShow = allAdults;
     }
 
-    private void RemoveAdult(int todoId)
+    private void RemoveAdult(int Id)
     {
-        Adult adultToRemove = allAdults.First(t => t.Id == todoId);
-        // TodosData.RemoveTodo(todoId);
+        Adult adultToRemove = allAdults.First(t => t.Id == Id);
+        DataService.RemoveAdult(Id);
         allAdults.Remove(adultToRemove);
         adultsToShow.Remove(adultToRemove);
         FileContext.SaveChanges();

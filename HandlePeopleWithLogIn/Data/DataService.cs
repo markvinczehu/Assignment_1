@@ -13,23 +13,24 @@ namespace HandlePeopleWithLogIn.Data
         private IList<Adult> adults;
         private FileContext FileContext;
 
-        // public DataService()
-        // {
-        //     if (!File.Exists(adultFile))
-        //     {
-        //         // Seed();
-        //         WriteTodosFile();
-        //     }
-        //     else
-        //     {
-        //         string content = File.ReadAllText(adultFile);
-        //         adults = JsonSerializer.Deserialize<List<Adult>>(content);
-        //     }
-        // }
+        public DataService()
+        {
+            FileContext = new FileContext();
+            adults = FileContext.Adults;
+            // if (!File.Exists(adultFile))
+            // {
+            //     // Seed();
+            //     WriteTodosFile();
+            // }
+            // else
+            // {
+            //     string content = File.ReadAllText(adultFile);
+            //     adults = JsonSerializer.Deserialize<List<Adult>>(content);
+            // }
+        }
         public IList<Adult> GetAdults()
         {
-            IList<Adult> tmp = FileContext.Adults;
-            adults = tmp;
+            IList<Adult> tmp = adults;
             return tmp;
         }
 
@@ -38,12 +39,14 @@ namespace HandlePeopleWithLogIn.Data
             int max = adults.Max(adult => adult.Id);
             adult.Id = (++max);
             adults.Add(adult);
+            FileContext.SaveChanges();
         }
 
         public void RemoveAdult(int Id)
         {
             Adult toRemove = adults.First(t => t.Id == Id);
             adults.Remove(toRemove);
+            FileContext.SaveChanges();
         }
 
         public void Update(Adult adult)

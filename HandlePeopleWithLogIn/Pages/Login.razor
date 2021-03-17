@@ -48,10 +48,15 @@
         errorMessage = "";
         username = "";
         password = "";
-        try {
+        try
+        {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
             NavigationManager.NavigateTo("/");
-        } catch (Exception e) { }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.StackTrace);
+        }
     }
 
 }
