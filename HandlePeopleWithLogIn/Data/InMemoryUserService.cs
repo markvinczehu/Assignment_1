@@ -11,18 +11,13 @@ public class InMemoryUserService : IUserService {
         users = new[] {
             new User {
                 Password = "123456",
-                Role = "Teacher",
-                UserName = "Troels"
+                Role = "",
+                UserName = "Mark"
             },
             new User {
                 Password = "123456",
-                Role = "Student",
-                UserName = "Jakob"
-            },
-            new User {
-                Password = "123456",
-                Role = "Guest",
-                UserName = "Kasper"
+                Role = "",
+                UserName = "Bob"
             }
         }.ToList();
     }
