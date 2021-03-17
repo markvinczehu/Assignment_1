@@ -1,0 +1,54 @@
+﻿@page "/AddAdult"
+@using Models
+@using HandlePeopleWithLogIn.Data
+
+@inject NavigationManager NavigationManager
+@inject IDataService DataService
+
+<h3>AddAdult</h3>
+
+<EditForm Model="@newAdultItem" OnValidSubmit="@AddNewAdult">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="form-group"> ID:<br/>
+        <InputNumber @bind-Value="newAdultItem.Id"/>
+    </div>
+    <div class="form-group"> Firstname:<br/>
+        <InputTextArea rows="4" @bind-Value="newAdultItem.FirstName"/>
+    </div>
+    <div class="form-group"> Lastname:<br/>
+        <InputTextArea rows="4" @bind-Value="newAdultItem.LastName"/>
+    </div>
+    <div class="form-group"> Eye colour:<br/>
+        <InputTextArea rows="4" @bind-Value="newAdultItem.EyeColor"/>
+    </div>
+    <div class="form-group"> Hair colour:<br/>
+        <InputTextArea rows="4" @bind-Value="newAdultItem.HairColor"/>
+    </div>
+    <div class="form-group"> Age:<br/>
+        <InputNumber rows="4" @bind-Value="newAdultItem.Age"/>
+    </div>
+    <div class="form-group"> Weight:<br/>
+        <InputNumber rows="4" @bind-Value="newAdultItem.Weight"/>
+    </div>
+    <div class="form-group"> Height:<br/>
+        <InputNumber rows="4" @bind-Value="newAdultItem.Height"/>
+    </div>
+    <div class="form-group"> Sex:<br/>
+        <InputTextArea rows="4" @bind-Value="newAdultItem.Sex"/>
+    </div>
+    <p class="actions">
+        <button class="btn btn-outline-dark"type="submit">Create</button>
+    </p>
+</EditForm>
+
+@code {
+    private Adult newAdultItem = new Adult();
+
+    private void AddNewAdult()
+    {
+        DataService.AddAdult(newAdultItem);
+        NavigationManager.NavigateTo("/Adults");
+    }
+
+}

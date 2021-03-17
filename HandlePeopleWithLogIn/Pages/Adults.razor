@@ -36,7 +36,7 @@
                 <th>ID</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
-                <th>Job title</th>
+                <th>Sex</th>
                 <th>Remove</th>
                 <th>Edit</th>
             </tr>
@@ -48,7 +48,7 @@
                     <td>@item.Id</td>
                     <td>@item.FirstName</td>
                     <td>@item.LastName</td>
-                    <td>@item.JobTitle</td>
+                    <td>@item.Sex</td>
                     <td>
                         <button @onclick="@(() => RemoveAdult(item.Id))">
                             <i class="oi oi-trash" style="color: red"/>
@@ -84,6 +84,7 @@
         // TodosData.RemoveTodo(todoId);
         allAdults.Remove(adultToRemove);
         adultsToShow.Remove(adultToRemove);
+        FileContext.SaveChanges();
     }
 
     private void FilterById(ChangeEventArgs changeEventArgs)

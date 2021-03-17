@@ -123,7 +123,7 @@ using LoginComponent;
         var user = (await AuthStat).User;
         if(!user.Identity.IsAuthenticated)
         {
-            NavigationManager.NavigateTo($"/login");
+            NavigationManager.NavigateTo($"/");
             // NavigationManager.NavigateTo($"/Login?returnUrl={Uri.EscapeDataString(NavigationManager.Uri)}");
         }
     }

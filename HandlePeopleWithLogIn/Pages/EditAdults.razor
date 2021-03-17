@@ -1,6 +1,77 @@
 ﻿@page "/EditAdults"
-<h3>EditAdults</h3>
 
+@using Models
+@using HandlePeopleWithLogIn.Data
+
+@inject NavigationManager NavigationManager
+@inject IDataService DataService
+
+<h3>Edit Adults with ID: @Id</h3>
+
+@if (adultToEdit == null)
+{
+    <em>Adult not found!</em>
+}
+else
+{
+    <EditForm Model="@adultToEdit" OnValidSubmit="@Save">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+        <div class="form-group">
+            ID:<br/>
+            <InputNumber @bind-Value="adultToEdit.Id"/>
+        </div>
+        <div class="form-group">
+            Firstname:<br/>
+            <InputTextArea rows="4" @bind-Value="adultToEdit.FirstName"/>
+        </div>
+        <div class="form-group">
+            Lastname:<br/>
+            <InputTextArea rows="4" @bind-Value="adultToEdit.LastName"/>
+        </div>
+        <div class="form-group">
+            Eye colour:<br/>
+            <InputTextArea rows="4" @bind-Value="adultToEdit.EyeColor"/>
+        </div>
+        <div class="form-group">
+            Hair colour:<br/>
+            <InputTextArea rows="4" @bind-Value="adultToEdit.HairColor"/>
+        </div>
+        <div class="form-group">
+            Age:<br/>
+            <InputNumber rows="4" @bind-Value="adultToEdit.Age"/>
+        </div>
+        <div class="form-group">
+            Weight:<br/>
+            <InputNumber rows="4" @bind-Value="adultToEdit.Weight"/>
+        </div>
+        <div class="form-group">
+            Height:<br/>
+            <InputNumber rows="4" @bind-Value="adultToEdit.Height"/>
+        </div>
+        <div class="form-group">
+            Sex:<br/>
+        <InputTextArea rows="4" @bind-value="adultToEdit.Sex"/>
+        </div>
+        <p class="actions">
+            <button class="btn btn-outline-dark" type="submit">Save</button>
+        </p>
+    </EditForm>
+}
 @code {
-    
+    [Parameter]
+    public int Id { get; set; }
+
+    private Adult adultToEdit;
+
+    protected override async Task OnInitializedAsync()
+    {
+        adultToEdit = DataService.Get(Id);
+    }
+
+    private void Save()
+    {
+        DataService.Update(adultToEdit);
+        NavigationManager.NavigateTo("/Adults");
+    }
 }

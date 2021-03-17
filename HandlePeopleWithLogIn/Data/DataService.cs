@@ -3,30 +3,33 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using Models;
+using Persistence;
 
 namespace HandlePeopleWithLogIn.Data
 {
-    public class TodoJSONData : IAdultService
+    public class DataService : IDataService
     {
-        private string adultFile = "adults.json";
+        // private string adultFile = "adults.json";
         private IList<Adult> adults;
+        private FileContext FileContext;
 
-        public TodoJSONData()
-        {
-            if (!File.Exists(adultFile))
-            {
-                // Seed();
-                WriteTodosFile();
-            }
-            else
-            {
-                string content = File.ReadAllText(adultFile);
-                adults = JsonSerializer.Deserialize<List<Adult>>(content);
-            }
-        }
+        // public DataService()
+        // {
+        //     if (!File.Exists(adultFile))
+        //     {
+        //         // Seed();
+        //         WriteTodosFile();
+        //     }
+        //     else
+        //     {
+        //         string content = File.ReadAllText(adultFile);
+        //         adults = JsonSerializer.Deserialize<List<Adult>>(content);
+        //     }
+        // }
         public IList<Adult> GetAdults()
         {
-            List<Adult> tmp = new List<Adult>(adults);
+            IList<Adult> tmp = FileContext.Adults;
+            adults = tmp;
             return tmp;
         }
 
@@ -35,14 +38,12 @@ namespace HandlePeopleWithLogIn.Data
             int max = adults.Max(adult => adult.Id);
             adult.Id = (++max);
             adults.Add(adult);
-            WriteTodosFile();
         }
 
         public void RemoveAdult(int Id)
         {
             Adult toRemove = adults.First(t => t.Id == Id);
             adults.Remove(toRemove);
-            WriteTodosFile();
         }
 
         public void Update(Adult adult)
@@ -50,19 +51,18 @@ namespace HandlePeopleWithLogIn.Data
             Adult toUpdate = adults.First(t => t.Id == adult.Id);
             // toUpdate.IsCompleted = todo.IsCompleted;
             // toUpdate.Title = todo.Title;
-            WriteTodosFile();
         }
 
-        public Adult Get(int id)
+        public Adult Get(int Id)
         {
-            return adults.First(t => t.Id == id);
+            return adults.First(t => t.Id == Id);
         }
 
-        private void WriteTodosFile()
-        {
-            string adultsAsJson = JsonSerializer.Serialize(adults);
-            File.WriteAllText(adultFile, adultsAsJson);
-        }
+        // private void WriteTodosFile()
+        // {
+        //     string adultsAsJson = JsonSerializer.Serialize(adults);
+        //     File.WriteAllText(adultFile, adultsAsJson);
+        // }
 
         // private void Seed()
         // {
