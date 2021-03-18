@@ -49,7 +49,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider {
             jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
             cachedUser = user;
         } catch (Exception e) {
-            throw e;
+            Console.WriteLine(e.StackTrace);
         }
 
         NotifyAuthenticationStateChanged(

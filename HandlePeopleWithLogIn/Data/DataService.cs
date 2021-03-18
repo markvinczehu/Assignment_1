@@ -19,8 +19,7 @@ namespace HandlePeopleWithLogIn.Data
             adults = FileContext.Adults;
             // if (!File.Exists(adultFile))
             // {
-            //     // Seed();
-            //     WriteTodosFile();
+            //     WriteAdultsFile();
             // }
             // else
             // {
@@ -30,8 +29,7 @@ namespace HandlePeopleWithLogIn.Data
         }
         public IList<Adult> GetAdults()
         {
-            IList<Adult> tmp = adults;
-            return tmp;
+            return adults;
         }
 
         public void AddAdult(Adult adult)
@@ -52,8 +50,14 @@ namespace HandlePeopleWithLogIn.Data
         public void Update(Adult adult)
         {
             Adult toUpdate = adults.First(t => t.Id == adult.Id);
-            // toUpdate.IsCompleted = todo.IsCompleted;
-            // toUpdate.Title = todo.Title;
+            toUpdate.FirstName = adult.FirstName;
+            toUpdate.LastName = adult.LastName;
+            toUpdate.Age = adult.Age;
+            toUpdate.Height = adult.Height;
+            toUpdate.Weight = adult.Weight;
+            toUpdate.EyeColor = adult.EyeColor;
+            toUpdate.HairColor = adult.HairColor;
+            toUpdate.Sex = adult.Sex;
         }
 
         public Adult Get(int Id)
@@ -61,53 +65,10 @@ namespace HandlePeopleWithLogIn.Data
             return adults.First(t => t.Id == Id);
         }
 
-        // private void WriteTodosFile()
+        // private void WriteAdultsFile()
         // {
         //     string adultsAsJson = JsonSerializer.Serialize(adults);
         //     File.WriteAllText(adultFile, adultsAsJson);
-        // }
-
-        // private void Seed()
-        // {
-        //     Todo[] ts =
-        //     {
-        //         new Todo
-        //         {
-        //             UserId = 1,
-        //             TodoId = 1,
-        //             Title = "Do Dishes",
-        //             IsCompleted = false
-        //         },
-        //         new Todo
-        //         {
-        //             UserId = 1,
-        //             TodoId = 2,
-        //             Title = "Walk the dog",
-        //             IsCompleted = false
-        //         },
-        //         new Todo
-        //         {
-        //             UserId = 2,
-        //             TodoId = 3,
-        //             Title = "Do DNP homework",
-        //             IsCompleted = true
-        //         },
-        //         new Todo
-        //         {
-        //             UserId = 3,
-        //             TodoId = 4,
-        //             Title = "Eat breakfast",
-        //             IsCompleted = false
-        //         },
-        //         new Todo
-        //         {
-        //             UserId = 4,
-        //             TodoId = 5,
-        //             Title = "Mow lawn",
-        //             IsCompleted = true
-        //         },
-        //     };
-        //     todos = ts.ToList();
         // }
     }
 }
