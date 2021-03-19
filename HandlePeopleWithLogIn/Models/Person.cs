@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Models {
@@ -14,6 +13,5 @@ public class Person {
     public int Height { get; set; }
     public string Sex { get; set; }
 }
-
 
 }

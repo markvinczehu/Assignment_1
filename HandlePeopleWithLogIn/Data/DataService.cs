@@ -50,14 +50,86 @@ namespace HandlePeopleWithLogIn.Data
         public void Update(Adult adult)
         {
             Adult toUpdate = adults.First(t => t.Id == adult.Id);
-            toUpdate.FirstName = adult.FirstName;
-            toUpdate.LastName = adult.LastName;
-            toUpdate.Age = adult.Age;
-            toUpdate.Height = adult.Height;
-            toUpdate.Weight = adult.Weight;
-            toUpdate.EyeColor = adult.EyeColor;
-            toUpdate.HairColor = adult.HairColor;
-            toUpdate.Sex = adult.Sex;
+            Adult toWrite = new Adult();
+            toWrite.JobTitle = new Job();
+
+            if (adult.FirstName.Equals(""))
+            {
+                toWrite.FirstName = toUpdate.FirstName;
+            }
+            else
+            {
+                toWrite.FirstName = adult.FirstName;
+            }
+            if (adult.LastName.Equals(""))
+            {
+                toWrite.LastName = toUpdate.LastName;
+            }
+            else
+            {
+                toWrite.LastName = adult.LastName;
+            }
+            if (adult.JobTitle.JobTitle.Equals(""))
+            {
+                toWrite.JobTitle.JobTitle = toUpdate.JobTitle.JobTitle;
+            }
+            else
+            {
+                toWrite.JobTitle.JobTitle = adult.JobTitle.JobTitle;
+            }
+            if (adult.Age == 0)
+            {
+                toWrite.Age = toUpdate.Age;
+            }
+            else
+            {
+                toWrite.Age = adult.Age;
+            }
+            if (adult.Height == 0)
+            {
+                toWrite.Height = toUpdate.Height;
+            }
+            else
+            {
+                toWrite.Height = adult.Height;
+            }
+            if (adult.Weight == 0)
+            {
+                toWrite.Weight = toUpdate.Weight;
+            }
+            else
+            {
+                toWrite.Weight = adult.Weight;
+            }
+            if (adult.EyeColor.Equals(""))
+            {
+                toWrite.EyeColor = toUpdate.EyeColor;
+            }
+            else
+            {
+                toWrite.EyeColor = adult.EyeColor;
+            }
+            if (adult.HairColor.Equals(""))
+            {
+                toWrite.HairColor = toUpdate.HairColor;
+            }
+            else
+            {
+                toWrite.HairColor = adult.HairColor;
+            }
+            if (adult.Sex.Equals(""))
+            {
+                toWrite.Sex = toUpdate.Sex;
+            }
+            else
+            {
+                toWrite.Sex = adult.Sex;
+            }
+            
+            adults.Remove(adults.First(t => t.Id == adult.Id));
+            adults.Add(toWrite);
+            FileContext.UpdateList(adults);
+            FileContext.SaveChanges();
         }
 
         public Adult Get(int Id)

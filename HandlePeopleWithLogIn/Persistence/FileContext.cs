@@ -51,5 +51,10 @@ namespace Persistence
                 outputFile.Write(jsonAdults);
             }
         }
+
+        public void UpdateList(IList<Adult> adults)
+        {
+            Adults = adults;
+        }
     }
 }

@@ -15,43 +15,47 @@
 else
 {
     <EditForm Model="@adultToEdit" OnValidSubmit="@Save">
-        <DataAnnotationsValidator/>
-        <ValidationSummary/>
+        <DataAnnotationsValidator />
+        <ValidationSummary />
         <div class="form-group">
-            ID:<br/>
-            <InputNumber @bind-Value="adultToEdit.Id"/>
+            ID:<br />
+            <InputNumber @bind-Value="@adultToEdit.Id"/>
         </div>
         <div class="form-group">
-            Firstname:<br/>
-            <InputText rows="4" @bind-Value="adultToEdit.FirstName"/>
+            Firstname:<br />
+            <InputText rows="4" @bind-Value="@adultToEdit.FirstName"/>
         </div>
         <div class="form-group">
-            Lastname:<br/>
-            <InputText rows="4" @bind-Value="adultToEdit.LastName"/>
+            Lastname:<br />
+            <InputText rows="4" @bind-Value="@adultToEdit.LastName"/>
         </div>
         <div class="form-group">
-            Eye colour:<br/>
-            <InputText rows="4" @bind-Value="adultToEdit.EyeColor"/>
+            Job:<br />
+            <InputText rows="4" @bind-Value="@adultToEdit.JobTitle.JobTitle"/>
         </div>
         <div class="form-group">
-            Hair colour:<br/>
-            <InputText rows="4" @bind-Value="adultToEdit.HairColor"/>
+            Eye colour:<br />
+            <InputText rows="4" @bind-Value="@adultToEdit.EyeColor"/>
         </div>
         <div class="form-group">
-            Age:<br/>
-            <InputNumber rows="4" @bind-Value="adultToEdit.Age"/>
+            Hair colour:<br />
+            <InputText rows="4" @bind-Value="@adultToEdit.HairColor"/>
         </div>
         <div class="form-group">
-            Weight:<br/>
-            <InputNumber rows="4" @bind-Value="adultToEdit.Weight"/>
+            Age:<br />
+            <InputNumber rows="4" @bind-Value="@adultToEdit.Age"/>
         </div>
         <div class="form-group">
-            Height:<br/>
-            <InputNumber rows="4" @bind-Value="adultToEdit.Height"/>
+            Weight:<br />
+            <InputNumber rows="4" @bind-Value="@adultToEdit.Weight"/>
         </div>
         <div class="form-group">
-            Sex:<br/>
-        <InputText rows="4" @bind-value="adultToEdit.Sex"/>
+            Height:<br />
+            <InputNumber rows="4" @bind-Value="@adultToEdit.Height"/>
+        </div>
+        <div class="form-group">
+            Sex:<br />
+            <InputText rows="4" @bind-Value="@adultToEdit.Sex"/>
         </div>
         <p class="actions">
             <button class="btn btn-outline-dark" type="submit">Save</button>

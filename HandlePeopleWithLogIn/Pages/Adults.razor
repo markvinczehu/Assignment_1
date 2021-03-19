@@ -82,6 +82,12 @@
         adultsToShow = allAdults;
     }
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        allAdults = DataService.GetAdults();
+        adultsToShow = allAdults;
+    }
+
     private void RemoveAdult(int Id)
     {
         Adult adultToRemove = allAdults.First(t => t.Id == Id);
@@ -146,5 +152,4 @@
     {
         NavigationManager.NavigateTo($"EditAdults/{id}");
     }
-    
 }
