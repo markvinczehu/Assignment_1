@@ -35,15 +35,15 @@ namespace HandlePeopleWithLogIn
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             services.AddScoped<IUserService, InMemoryUserService>();
             services.AddAuthorization(options => {
-                options.AddPolicy("MustBeTeacher",  a => 
-                    a.RequireAuthenticatedUser().RequireClaim("Role", "Teacher"));
-            
-                options.AddPolicy("SecurityLevel2", policy =>
-                    policy.RequireAuthenticatedUser().RequireAssertion(context => {
-                        Claim levelClaim = context.User.FindFirst(claim => claim.Type.Equals("Level"));
-                        if (levelClaim == null) return false;
-                        return int.Parse(levelClaim.Value) >= 2;
-                    }));
+                options.AddPolicy("MustBeSomeone",  a => 
+                    a.RequireAuthenticatedUser().RequireClaim("Role", "Someone"));
+                //
+                // options.AddPolicy("SecurityLevel2", policy =>
+                //     policy.RequireAuthenticatedUser().RequireAssertion(context => {
+                //         Claim levelClaim = context.User.FindFirst(claim => claim.Type.Equals("Level"));
+                //         if (levelClaim == null) return false;
+                //         return int.Parse(levelClaim.Value) >= 2;
+                //     }));
             });
             services.AddSingleton<FileContext>();
             services.AddScoped<IDataService, DataService>();

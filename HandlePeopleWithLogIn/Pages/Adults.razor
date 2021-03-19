@@ -54,15 +54,34 @@
                     <td>@item.JobTitle.JobTitle</td>
                     <td>@item.Sex</td>
                     <td>
-                        <button @onclick="@(() => RemoveAdult(item.Id))">
-                            <i class="oi oi-trash" style="color: red"/>
-                        </button>
+                        <AuthorizeView>
+                            <NotAuthorized>
+                                <button @onclick="@(() => RemoveAdult(item.Id))" disabled>
+                                    <i class="oi oi-trash" style="color: red"/>
+                                </button>
+                            </NotAuthorized>
+                            <Authorized>
+                                <button @onclick="@(() => RemoveAdult(item.Id))">
+                                    <i class="oi oi-trash" style="color: red"/>
+                                </button>
+                            </Authorized>
+                        </AuthorizeView>
                     </td>
                     <td>
-                        <button @onclick="@(() => Edit(item.Id))">
-                            <i class="oi oi-pencil" style="color: #1b6ec2"/>
-                        </button>
+                        <AuthorizeView>
+                            <NotAuthorized>
+                                <button @onclick="@(() => Edit(item.Id))" disabled>
+                                    <i class="oi oi-pencil" style="color: #1b6ec2"/>
+                                </button>
+                            </NotAuthorized>
+                            <Authorized>
+                                <button @onclick="@(() => Edit(item.Id))">
+                                    <i class="oi oi-pencil" style="color: #1b6ec2"/>
+                                </button>
+                            </Authorized>
+                        </AuthorizeView>
                     </td>
+
                 </tr>
             }
             </tbody>

@@ -5,7 +5,7 @@
 @inject NavigationManager NavigationManager
 @inject IDataService DataService
 
-<h3>AddAdult</h3>
+<h3>Add a new adult:</h3>
 <AuthorizeView>
     <NotAuthorized>Please log in to add new data!</NotAuthorized>
     <Authorized Context="Auth">
@@ -21,7 +21,7 @@
             <div class="form-group"> Lastname:<br/>
                 <InputText rows="4" @bind-Value="newAdultItem.LastName"/>
             </div>
-            <div class="form-group"> Eye colour:<br/>
+            <div class="form-group"> Job:<br/>
                 <InputText rows="4" @bind-Value="newAdultItem.JobTitle.JobTitle"/>
             </div>
             <div class="form-group"> Eye colour:<br/>

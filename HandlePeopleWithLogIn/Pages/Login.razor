@@ -16,10 +16,11 @@
             <input type="password" placeholder="password" @bind-value="password"/>
         </div>
         <div style="color:red">@errorMessage</div>
-
-        <a href="" @onclick="PerformLogin">
+        <div class="form-group">
+        <button class="btn-outline-dark" @onclick="PerformLogin">
             Login
-        </a>
+        </button>
+        </div>
     </NotAuthorized>
     <Authorized>
         <a href="" @onclick="PerformLogout">

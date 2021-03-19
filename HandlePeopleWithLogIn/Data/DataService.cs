@@ -53,6 +53,15 @@ namespace HandlePeopleWithLogIn.Data
             Adult toWrite = new Adult();
             toWrite.JobTitle = new Job();
 
+            if (adult.Id == 0)
+            {
+                toWrite.Id = toUpdate.Id;
+            }
+            else
+            {
+                toWrite.Id = adult.Id;
+            }
+            
             if (adult.FirstName.Equals(""))
             {
                 toWrite.FirstName = toUpdate.FirstName;
@@ -61,6 +70,7 @@ namespace HandlePeopleWithLogIn.Data
             {
                 toWrite.FirstName = adult.FirstName;
             }
+            
             if (adult.LastName.Equals(""))
             {
                 toWrite.LastName = toUpdate.LastName;
@@ -69,6 +79,7 @@ namespace HandlePeopleWithLogIn.Data
             {
                 toWrite.LastName = adult.LastName;
             }
+            
             if (adult.JobTitle.JobTitle.Equals(""))
             {
                 toWrite.JobTitle.JobTitle = toUpdate.JobTitle.JobTitle;
@@ -77,6 +88,7 @@ namespace HandlePeopleWithLogIn.Data
             {
                 toWrite.JobTitle.JobTitle = adult.JobTitle.JobTitle;
             }
+            
             if (adult.Age == 0)
             {
                 toWrite.Age = toUpdate.Age;
@@ -85,6 +97,7 @@ namespace HandlePeopleWithLogIn.Data
             {
                 toWrite.Age = adult.Age;
             }
+            
             if (adult.Height == 0)
             {
                 toWrite.Height = toUpdate.Height;
@@ -93,6 +106,7 @@ namespace HandlePeopleWithLogIn.Data
             {
                 toWrite.Height = adult.Height;
             }
+            
             if (adult.Weight == 0)
             {
                 toWrite.Weight = toUpdate.Weight;
@@ -101,6 +115,7 @@ namespace HandlePeopleWithLogIn.Data
             {
                 toWrite.Weight = adult.Weight;
             }
+            
             if (adult.EyeColor.Equals(""))
             {
                 toWrite.EyeColor = toUpdate.EyeColor;
@@ -109,6 +124,7 @@ namespace HandlePeopleWithLogIn.Data
             {
                 toWrite.EyeColor = adult.EyeColor;
             }
+            
             if (adult.HairColor.Equals(""))
             {
                 toWrite.HairColor = toUpdate.HairColor;
@@ -117,6 +133,7 @@ namespace HandlePeopleWithLogIn.Data
             {
                 toWrite.HairColor = adult.HairColor;
             }
+            
             if (adult.Sex.Equals(""))
             {
                 toWrite.Sex = toUpdate.Sex;

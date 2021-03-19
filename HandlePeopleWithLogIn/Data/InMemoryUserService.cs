@@ -11,7 +11,7 @@ public class InMemoryUserService : IUserService {
         users = new[] {
             new User {
                 Password = "123456",
-                Role = "",
+                Role = "Someone",
                 UserName = "Mark"
             },
             new User {
