@@ -9,7 +9,6 @@ namespace HandlePeopleWithLogIn.Data
 {
     public class DataService : IDataService
     {
-        // private string adultFile = "adults.json";
         private IList<Adult> adults;
         private FileContext FileContext;
 
@@ -17,15 +16,6 @@ namespace HandlePeopleWithLogIn.Data
         {
             FileContext = new FileContext();
             adults = FileContext.Adults;
-            // if (!File.Exists(adultFile))
-            // {
-            //     WriteAdultsFile();
-            // }
-            // else
-            // {
-            //     string content = File.ReadAllText(adultFile);
-            //     adults = JsonSerializer.Deserialize<List<Adult>>(content);
-            // }
         }
         public IList<Adult> GetAdults()
         {
@@ -153,11 +143,5 @@ namespace HandlePeopleWithLogIn.Data
         {
             return adults.First(t => t.Id == Id);
         }
-
-        // private void WriteAdultsFile()
-        // {
-        //     string adultsAsJson = JsonSerializer.Serialize(adults);
-        //     File.WriteAllText(adultFile, adultsAsJson);
-        // }
     }
 }

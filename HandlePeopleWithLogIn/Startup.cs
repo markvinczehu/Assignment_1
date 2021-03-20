@@ -33,7 +33,7 @@ namespace HandlePeopleWithLogIn
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
-            services.AddScoped<IUserService, InMemoryUserService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddAuthorization(options => {
                 options.AddPolicy("MustBeSomeone",  a => 
                     a.RequireAuthenticatedUser().RequireClaim("Role", "Someone"));

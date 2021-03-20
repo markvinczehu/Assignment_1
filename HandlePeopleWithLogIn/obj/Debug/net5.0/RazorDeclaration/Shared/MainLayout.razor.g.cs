@@ -111,7 +111,7 @@ using LoginComponent;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 23 "C:\Users\Mark\Desktop\DNP\Assignment_1\HandlePeopleWithLogIn\Shared\MainLayout.razor"
+#line 22 "C:\Users\Mark\Desktop\DNP\Assignment_1\HandlePeopleWithLogIn\Shared\MainLayout.razor"
        
 
     [CascadingParameter] 

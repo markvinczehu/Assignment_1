@@ -1,21 +1,6 @@
 [
   {
     "JobTitle": {
-      "JobTitle": "Casino Host",
-      "Salary": 0
-    },
-    "id": 15616,
-    "FirstName": "Lester",
-    "LastName": "Cruz",
-    "HairColor": "White",
-    "EyeColor": "Amber",
-    "Age": 39,
-    "Weight": 126.2,
-    "Height": 179,
-    "Sex": "M"
-  },
-  {
-    "JobTitle": {
       "JobTitle": "Nurse",
       "Salary": 0
     },
@@ -148,5 +133,20 @@
     "Weight": 95,
     "Height": 190,
     "Sex": "yes"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Casino Host",
+      "Salary": 0
+    },
+    "id": 15616,
+    "FirstName": "Lester",
+    "LastName": "Cruz",
+    "HairColor": "White",
+    "EyeColor": "Amber",
+    "Age": 39,
+    "Weight": 126.2,
+    "Height": 179,
+    "Sex": "M"
   }
 ]

@@ -1,25 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Models;
+using Persistence;
 
 namespace HandlePeopleWithLogIn.Data {
-public class InMemoryUserService : IUserService {
-    private List<User> users;
-
-    public InMemoryUserService() {
-        users = new[] {
-            new User {
-                Password = "123456",
-                Role = "Someone",
-                UserName = "Mark"
-            },
-            new User {
-                Password = "123456",
-                Role = "",
-                UserName = "Bob"
-            }
-        }.ToList();
+public class UserService : IUserService {
+    private IList<User> users;
+    private FileContext FileContext;
+    public UserService()
+    {
+        FileContext = new FileContext();
+        users = FileContext.Users;
     }
 
 
@@ -34,6 +27,12 @@ public class InMemoryUserService : IUserService {
         }
 
         return first;
+    }
+
+    public void AddUser(User user)
+    {
+        users.Add(user);
+        FileContext.SaveChanges();
     }
 }
 }
