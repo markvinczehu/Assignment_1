@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace HandlePeopleWithLogIn.Models {
+namespace PeopleWebApi.Models {
 public class Child : Person {
     
     public List<Interest> Interests { get; set; }

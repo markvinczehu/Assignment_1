@@ -1,4 +1,4 @@
-namespace HandlePeopleWithLogIn.Models
+namespace PeopleWebApi.Models
 {
     public class Job
     {

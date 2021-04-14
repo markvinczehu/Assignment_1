@@ -1,11 +1,11 @@
 ﻿@page "/Adults"
-@using Persistence
-@using Models
 @using HandlePeopleWithLogIn.Data
+@using HandlePeopleWithLogIn.Models
+@using HandlePeopleWithLogIn.Persistence
 
 @inject FileContext FileContext
 @inject NavigationManager NavigationManager
-@inject IDataService DataService
+@inject ICloudService DataService
 
 <h3>Adults</h3>
 <p> 
@@ -36,8 +36,8 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
+                <th>First name</th>
+                <th>Last name</th>
                 <th>Job</th>
                 <th>Sex</th>
                 <th>Remove</th>
@@ -97,20 +97,20 @@
 
     protected override async Task OnInitializedAsync()
     {
-        allAdults = DataService.GetAdults();
+        allAdults = await DataService.GetAdultAsync();
         adultsToShow = allAdults;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        allAdults = DataService.GetAdults();
+        allAdults = await DataService.GetAdultAsync();
         adultsToShow = allAdults;
     }
 
     private void RemoveAdult(int Id)
     {
         Adult adultToRemove = allAdults.First(t => t.Id == Id);
-        DataService.RemoveAdult(Id);
+        DataService.RemoveAdultAsync(Id);
         allAdults.Remove(adultToRemove);
         adultsToShow.Remove(adultToRemove);
         FileContext.SaveChanges();

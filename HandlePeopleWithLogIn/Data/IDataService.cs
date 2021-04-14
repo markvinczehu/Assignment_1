@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Models;
+using HandlePeopleWithLogIn.Models;
 
 namespace HandlePeopleWithLogIn.Data
 {

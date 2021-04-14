@@ -1,6 +1,6 @@
 ﻿@page "/registration"
-@using Models
 @using HandlePeopleWithLogIn.Data
+@using HandlePeopleWithLogIn.Models
 
 @inject NavigationManager NavigationManager
 @inject IUserService UserService
@@ -25,7 +25,6 @@
 
 @code {
     private User newUserItem;
-    private String passwordCheck;
 
     protected override Task OnInitializedAsync()
     {
@@ -35,10 +34,12 @@
     
     private async Task SetupNewUser()
     {
-        newUserItem = new User();
-        newUserItem.UserName = "";
-        newUserItem.Password = "";
-        newUserItem.Role = "";
+        newUserItem = new User
+        {
+            UserName = "",
+            Password = "",
+            Role = ""
+        };
     }
 
     private void AddNewUser()

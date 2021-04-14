@@ -1,10 +1,9 @@
 ﻿@page "/EditAdults/{Id:int}"
-
-@using Models
 @using HandlePeopleWithLogIn.Data
+@using HandlePeopleWithLogIn.Models
 
 @inject NavigationManager NavigationManager
-@inject IDataService DataService
+@inject ICloudService DataService
 
 
 <h3>Edit Adults with ID: @Id</h3>
@@ -30,8 +29,12 @@
                     <InputText rows="4" @bind-Value="@adultToEdit.LastName"/>
                 </div>
                 <div class="form-group">
-                    Job:<br/>
+                    Job title:<br/>
                     <InputText rows="4" @bind-Value="@adultToEdit.JobTitle.JobTitle"/>
+                </div>
+                <div class="form-group">
+                    Salary:<br/>
+                    <InputNumber rows="4" @bind-Value="@adultToEdit.JobTitle.Salary"/>
                 </div>
                 <div class="form-group">
                     Eye colour:<br/>
@@ -71,12 +74,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        adultToEdit = DataService.Get(Id);
+        adultToEdit = await DataService.GetAsync(Id);
     }
 
     private void Save()
     {
-        DataService.Update(adultToEdit);
+        DataService.UpdateAdultAsync(adultToEdit);
         NavigationManager.NavigateTo("/Adults");
     }
 }

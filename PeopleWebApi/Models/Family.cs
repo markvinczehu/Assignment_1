@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace HandlePeopleWithLogIn.Models {
+namespace PeopleWebApi.Models {
 public class Family {
     
     //public int Id { get; set; }

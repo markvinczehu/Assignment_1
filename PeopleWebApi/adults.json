@@ -1,0 +1,137 @@
+[
+  {
+    "JobTitle": {
+      "JobTitle": "lawnmower",
+      "Salary": 0
+    },
+    "id": 46516,
+    "firstName": "Jack",
+    "lastName": "Field",
+    "HairColor": "black",
+    "EyeColor": "blue",
+    "Age": 50,
+    "Weight": 85,
+    "Height": 179,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Office Clerk",
+      "Salary": 0
+    },
+    "id": 98412,
+    "firstName": "Karen",
+    "lastName": "Mosegaard",
+    "HairColor": "Brown",
+    "EyeColor": "Amber",
+    "Age": 42,
+    "Weight": 27.6,
+    "Height": 148,
+    "Sex": "F"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Writer",
+      "Salary": 0
+    },
+    "id": 71565,
+    "firstName": "P.",
+    "lastName": "Howard",
+    "HairColor": "Leverpostej",
+    "EyeColor": "Brown",
+    "Age": 46,
+    "Weight": 102.5,
+    "Height": 164,
+    "Sex": "F"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Elvis-imitator",
+      "Salary": 0
+    },
+    "id": 98413,
+    "firstName": "Johnny",
+    "lastName": "Bravo",
+    "HairColor": "yellow",
+    "EyeColor": "glasses",
+    "Age": 20,
+    "Weight": 95,
+    "Height": 190,
+    "Sex": "yes"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Casino Host",
+      "Salary": 0
+    },
+    "id": 15616,
+    "firstName": "Antonio",
+    "lastName": "White",
+    "HairColor": "White",
+    "EyeColor": "Amber",
+    "Age": 39,
+    "Weight": 126.2,
+    "Height": 179,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Dentist",
+      "Salary": 0
+    },
+    "id": 98415,
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "HairColor": "Brown",
+    "EyeColor": "Blue",
+    "Age": 42,
+    "Weight": 70,
+    "Height": 176,
+    "Sex": "F"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Web Administrator",
+      "Salary": 0
+    },
+    "id": 54616,
+    "firstName": "Bob",
+    "lastName": "Bob",
+    "HairColor": "Black",
+    "EyeColor": "Brown",
+    "Age": 59,
+    "Weight": 54.4,
+    "Height": 166,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Science Teacher",
+      "Salary": 0
+    },
+    "id": 65465,
+    "firstName": "Pedro A.",
+    "lastName": "Sanchez",
+    "HairColor": "Black",
+    "EyeColor": "Brown",
+    "Age": 33,
+    "Weight": 55.4,
+    "Height": 171,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "Janitor",
+      "Salary": 25000
+    },
+    "id": 65416,
+    "firstName": "John",
+    "lastName": "Morton",
+    "HairColor": "Blond",
+    "EyeColor": "Blue",
+    "Age": 52,
+    "Weight": 56.8,
+    "Height": 172,
+    "Sex": "F"
+  }
+]

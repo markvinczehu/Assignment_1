@@ -4,9 +4,9 @@ using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 using HandlePeopleWithLogIn.Data;
+using HandlePeopleWithLogIn.Models;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using Models;
 
 namespace HandlePeopleWithLogIn.Auth {
 public class CustomAuthenticationStateProvider : AuthenticationStateProvider {

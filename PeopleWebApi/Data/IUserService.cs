@@ -1,6 +1,6 @@
-﻿using HandlePeopleWithLogIn.Models;
+﻿using PeopleWebApi.Models;
 
-namespace HandlePeopleWithLogIn.Data
+namespace PeopleWebApi.Data
 {
     public interface IUserService
     {

@@ -1,4 +1,4 @@
-namespace HandlePeopleWithLogIn.Models {
+namespace PeopleWebApi.Models {
 public class Pet {
     public int Id { get; set; }
     public string Species { get; set; }

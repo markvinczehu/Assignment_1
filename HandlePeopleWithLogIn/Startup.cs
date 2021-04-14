@@ -12,8 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HandlePeopleWithLogIn.Data;
+using HandlePeopleWithLogIn.Persistence;
 using Microsoft.AspNetCore.Components.Authorization;
-using Persistence;
 
 namespace HandlePeopleWithLogIn
 {
@@ -46,7 +46,7 @@ namespace HandlePeopleWithLogIn
                 //     }));
             });
             services.AddSingleton<FileContext>();
-            services.AddScoped<IDataService, DataService>();
+            services.AddScoped<ICloudService, CloudService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

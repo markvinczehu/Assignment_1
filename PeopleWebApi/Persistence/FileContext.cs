@@ -1,9 +1,9 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using HandlePeopleWithLogIn.Models;
+using PeopleWebApi.Models;
 
-namespace HandlePeopleWithLogIn.Persistence
+namespace PeopleWebApi.Persistence
 {
     public class FileContext
     {

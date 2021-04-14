@@ -1,9 +1,9 @@
 ﻿@page "/AddAdult"
-@using Models
 @using HandlePeopleWithLogIn.Data
+@using HandlePeopleWithLogIn.Models
 
 @inject NavigationManager NavigationManager
-@inject IDataService DataService
+@inject ICloudService DataService
 
 <h3>Add a new adult:</h3>
 <AuthorizeView>
@@ -21,8 +21,11 @@
             <div class="form-group"> Lastname:<br/>
                 <InputText rows="4" @bind-Value="newAdultItem.LastName"/>
             </div>
-            <div class="form-group"> Job:<br/>
+            <div class="form-group"> Job title:<br/>
                 <InputText rows="4" @bind-Value="newAdultItem.JobTitle.JobTitle"/>
+            </div>
+            <div class="form-group"> Salary:<br/>
+                <InputNumber rows="4" @bind-Value="newAdultItem.JobTitle.Salary"/>
             </div>
             <div class="form-group"> Eye colour:<br/>
                 <InputText rows="4" @bind-Value="newAdultItem.EyeColor"/>
@@ -76,7 +79,7 @@
 
     private void AddNewAdult()
     {
-        DataService.AddAdult(newAdultItem);
+        DataService.AddAdultAsync(newAdultItem);
         NavigationManager.NavigateTo("/Adults");
     }
 }

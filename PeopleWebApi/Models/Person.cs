@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace HandlePeopleWithLogIn.Models {
+namespace PeopleWebApi.Models {
 public class Person {
     [JsonPropertyName("id")]
     public int Id { get; set; }

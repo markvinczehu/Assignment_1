@@ -1,27 +1,12 @@
 [
   {
     "JobTitle": {
-      "JobTitle": "Nurse",
-      "Salary": 0
-    },
-    "id": 16846,
-    "FirstName": "Zahra",
-    "LastName": "Salt",
-    "HairColor": "Brown",
-    "EyeColor": "Grey",
-    "Age": 32,
-    "Weight": 124.2,
-    "Height": 174,
-    "Sex": "F"
-  },
-  {
-    "JobTitle": {
       "JobTitle": "Web Administrator",
       "Salary": 0
     },
     "id": 54616,
-    "FirstName": "Zavier",
-    "LastName": "Huffman",
+    "firstName": null,
+    "lastName": null,
     "HairColor": "Black",
     "EyeColor": "Brown",
     "Age": 59,
@@ -35,8 +20,8 @@
       "Salary": 0
     },
     "id": 65465,
-    "FirstName": "Arley",
-    "LastName": "Vaughn",
+    "firstName": null,
+    "lastName": null,
     "HairColor": "Black",
     "EyeColor": "Brown",
     "Age": 33,
@@ -50,8 +35,8 @@
       "Salary": 0
     },
     "id": 65416,
-    "FirstName": "Isiah",
-    "LastName": "Esparza",
+    "firstName": null,
+    "lastName": null,
     "HairColor": "Brown",
     "EyeColor": "Brown",
     "Age": 44,
@@ -65,8 +50,8 @@
       "Salary": 0
     },
     "id": 46516,
-    "FirstName": "Bob",
-    "LastName": "Bobek",
+    "firstName": null,
+    "lastName": null,
     "HairColor": "black",
     "EyeColor": "blue",
     "Age": 50,
@@ -80,8 +65,8 @@
       "Salary": 0
     },
     "id": 65416,
-    "FirstName": "Cataleya",
-    "LastName": "Mcintyre",
+    "firstName": null,
+    "lastName": null,
     "HairColor": "Blond",
     "EyeColor": "Blue",
     "Age": 52,
@@ -95,8 +80,8 @@
       "Salary": 0
     },
     "id": 98412,
-    "FirstName": "Andi",
-    "LastName": "Wells",
+    "firstName": null,
+    "lastName": null,
     "HairColor": "Brown",
     "EyeColor": "Amber",
     "Age": 42,
@@ -110,8 +95,8 @@
       "Salary": 0
     },
     "id": 71565,
-    "FirstName": "Genevieve",
-    "LastName": "Cruz",
+    "firstName": null,
+    "lastName": null,
     "HairColor": "Leverpostej",
     "EyeColor": "Brown",
     "Age": 46,
@@ -125,8 +110,8 @@
       "Salary": 0
     },
     "id": 98413,
-    "FirstName": "Johnny",
-    "LastName": "Bravo",
+    "firstName": null,
+    "lastName": null,
     "HairColor": "yellow",
     "EyeColor": "glasses",
     "Age": 20,
@@ -140,13 +125,28 @@
       "Salary": 0
     },
     "id": 15616,
-    "FirstName": "Lester",
-    "LastName": "Cruz",
+    "firstName": null,
+    "lastName": null,
     "HairColor": "White",
     "EyeColor": "Amber",
     "Age": 39,
     "Weight": 126.2,
     "Height": 179,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "JobTitle": "a bob",
+      "Salary": 0
+    },
+    "id": 98414,
+    "firstName": null,
+    "lastName": null,
+    "HairColor": "blue",
+    "EyeColor": "green",
+    "Age": 45,
+    "Weight": 79,
+    "Height": 181,
     "Sex": "M"
   }
 ]

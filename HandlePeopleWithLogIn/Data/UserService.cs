@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Models;
-using Persistence;
+using HandlePeopleWithLogIn.Models;
+using HandlePeopleWithLogIn.Persistence;
 
 namespace HandlePeopleWithLogIn.Data {
 public class UserService : IUserService {

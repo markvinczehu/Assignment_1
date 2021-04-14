@@ -1,4 +1,4 @@
-namespace HandlePeopleWithLogIn.Models {
+namespace PeopleWebApi.Models {
 public class Interest {
     public string Type { get; set; }
     public string Description { get; set; }

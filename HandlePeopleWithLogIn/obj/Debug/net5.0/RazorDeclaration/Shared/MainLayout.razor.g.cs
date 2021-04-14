@@ -96,13 +96,6 @@ using Radzen;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 1 "C:\Users\Mark\Desktop\DNP\Assignment_1\HandlePeopleWithLogIn\Shared\MainLayout.razor"
-using LoginComponent;
-
-#line default
-#line hidden
-#nullable disable
     public partial class MainLayout : LayoutComponentBase
     {
         #pragma warning disable 1998
@@ -111,7 +104,7 @@ using LoginComponent;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 22 "C:\Users\Mark\Desktop\DNP\Assignment_1\HandlePeopleWithLogIn\Shared\MainLayout.razor"
+#line 20 "C:\Users\Mark\Desktop\DNP\Assignment_1\HandlePeopleWithLogIn\Shared\MainLayout.razor"
        
 
     [CascadingParameter] 

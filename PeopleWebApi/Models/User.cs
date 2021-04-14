@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace HandlePeopleWithLogIn.Models
+namespace PeopleWebApi.Models
 {
     public class User
     {
