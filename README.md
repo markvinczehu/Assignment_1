@@ -1,7 +1,9 @@
-# Assignment_1
+# Assignment_2
 DNP assignment
 
 This is a university project repository for .NET course. A Blazor site that handles CRUD operations on JSON files.
+
+Web API added.
 
 Work in progress...
 
