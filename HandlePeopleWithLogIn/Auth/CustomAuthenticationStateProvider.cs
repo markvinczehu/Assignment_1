@@ -26,7 +26,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider {
             string userAsJson = await jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
             if (!string.IsNullOrEmpty(userAsJson)) {
                 User tmp = JsonSerializer.Deserialize<User>(userAsJson);
-                ValidateLogin(tmp.UserName, tmp.Password);
+                ValidateLoginAsync(tmp.UserName, tmp.Password);
             }
         } else {
             identity = SetupClaimsForUser(cachedUser);
@@ -36,14 +36,14 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider {
         return await Task.FromResult(new AuthenticationState(cachedClaimsPrincipal));
     }
 
-    public void ValidateLogin(string username, string password) {
+    public async void ValidateLoginAsync(string username, string password) {
         Console.WriteLine("Validating log in");
         if (string.IsNullOrEmpty(username)) throw new Exception("Enter username");
         if (string.IsNullOrEmpty(password)) throw new Exception("Enter password");
 
         ClaimsIdentity identity = new ClaimsIdentity();
         try {
-            User user = userService.ValidateUser(username, password);
+            User user = await userService.ValidateUser(username, password);
             identity = SetupClaimsForUser(user);
             string serialisedData = JsonSerializer.Serialize(user);
             jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
@@ -65,8 +65,8 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider {
 
     private ClaimsIdentity SetupClaimsForUser(User user) {
         List<Claim> claims = new List<Claim>();
-        claims.Add(new Claim(ClaimTypes.Name, user.UserName));
-        claims.Add(new Claim("Role", user.Role));
+        // claims.Add(new Claim(ClaimTypes.Name, user.UserName));
+        // claims.Add(new Claim("Role", user.Role));
 
         ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth_type");
         return identity;

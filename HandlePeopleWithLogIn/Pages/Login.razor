@@ -1,5 +1,5 @@
 ﻿@page "/login"
-@namespace HandlePeopleWithLogIn.Pages
+@namespace LoginComponent
 @using HandlePeopleWithLogIn.Auth
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
@@ -42,7 +42,7 @@
     private async Task PerformLogin() {
         errorMessage = "";
         try {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLoginAsync(username, password);
             username = "";
             password = "";
         } catch (Exception e) {

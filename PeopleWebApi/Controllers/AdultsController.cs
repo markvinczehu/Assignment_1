@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Security.Policy;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PeopleWebApi.Data;
 using PeopleWebApi.Models;
+using PeopleWebApi.Services;
 
 namespace PeopleWebApi.Controllers
 {
@@ -35,7 +35,7 @@ namespace PeopleWebApi.Controllers
         {
             try
             {
-                Adult adult = await dataService.GetAsync(id);
+                Adult adult = await dataService.GetAdultsAsync(id);
                 return Ok(adult);
             }
             catch (Exception e)

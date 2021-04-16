@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using PeopleWebApi.Models;
 
-namespace PeopleWebApi.Data
+namespace PeopleWebApi.Services
 {
     public interface IDataService
     {
@@ -10,6 +10,6 @@ namespace PeopleWebApi.Data
         Task RemoveAdultAsync(int id);
         Task<Adult> AddAdultAsync(Adult adult);
         Task<Adult> UpdateAdultAsync(Adult adult);
-        Task<Adult> GetAsync(int id);
+        Task<Adult> GetAdultsAsync(int id);
     }
 }

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
 using HandlePeopleWithLogIn.Auth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -12,7 +14,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using HandlePeopleWithLogIn.Data;
-using HandlePeopleWithLogIn.Persistence;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace HandlePeopleWithLogIn
@@ -45,7 +46,6 @@ namespace HandlePeopleWithLogIn
                 //         return int.Parse(levelClaim.Value) >= 2;
                 //     }));
             });
-            services.AddSingleton<FileContext>();
             services.AddScoped<ICloudService, CloudService>();
         }
 

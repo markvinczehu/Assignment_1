@@ -1,9 +1,7 @@
 ﻿@page "/Adults"
 @using HandlePeopleWithLogIn.Data
 @using HandlePeopleWithLogIn.Models
-@using HandlePeopleWithLogIn.Persistence
 
-@inject FileContext FileContext
 @inject NavigationManager NavigationManager
 @inject ICloudService DataService
 
@@ -113,7 +111,6 @@
         DataService.RemoveAdultAsync(Id);
         allAdults.Remove(adultToRemove);
         adultsToShow.Remove(adultToRemove);
-        FileContext.SaveChanges();
     }
 
     private void FilterById(ChangeEventArgs changeEventArgs)

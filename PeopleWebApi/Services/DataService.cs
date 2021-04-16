@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using PeopleWebApi.Models;
 using PeopleWebApi.Persistence;
 
-namespace PeopleWebApi.Data
+namespace PeopleWebApi.Services
 {
     public class DataService : IDataService
     {
@@ -72,10 +72,10 @@ namespace PeopleWebApi.Data
             FileContext.SaveChanges();
             return adult;
         }
-        
-        public async Task<Adult> GetAsync(int Id)
+
+        public async Task<Adult> GetAdultsAsync(int id)
         {
-            return adults.First(t => t.Id == Id);
+            return adults.First(t => t.Id == id);
         }
     }
 }

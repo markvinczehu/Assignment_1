@@ -2,37 +2,41 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 using HandlePeopleWithLogIn.Models;
-using HandlePeopleWithLogIn.Persistence;
 
 namespace HandlePeopleWithLogIn.Data {
 public class UserService : IUserService {
-    private IList<User> users;
-    private FileContext FileContext;
+    private const string uri = "https://localhost:5003";
+    private readonly HttpClient client;
     public UserService()
     {
-        FileContext = new FileContext();
-        users = FileContext.Users;
+        client = new HttpClient();
     }
-
-
-    public User ValidateUser(string userName, string password) {
-        User first = users.FirstOrDefault(user => user.UserName.Equals(userName));
-        if (first == null) {
-            throw new Exception("User not found");
-        }
-
-        if (!first.Password.Equals(password)) {
-            throw new Exception("Incorrect password");
-        }
-
-        return first;
-    }
-
-    public void AddUser(User user)
+    
+    public async Task<User> ValidateUser(string username, string password)
     {
-        users.Add(user);
-        FileContext.SaveChanges();
+        HttpResponseMessage response = await client.GetAsync(uri + $"/users?username={username}&password={password}");
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            string userAsJson = await response.Content.ReadAsStringAsync();
+            User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
+            return resultUser;
+        } 
+        throw new Exception("User not found");
+    }
+
+    public async Task AddUser(User user)
+    {
+        var userAsJson = JsonSerializer.Serialize(user);
+        HttpContent content = new StringContent(userAsJson,
+            Encoding.UTF8,
+            "application/json");
+        await client.PostAsync(uri + "/users", content);
     }
 }
 }

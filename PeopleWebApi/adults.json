@@ -106,21 +106,6 @@
   },
   {
     "JobTitle": {
-      "JobTitle": "Science Teacher",
-      "Salary": 0
-    },
-    "id": 65465,
-    "firstName": "Pedro A.",
-    "lastName": "Sanchez",
-    "HairColor": "Black",
-    "EyeColor": "Brown",
-    "Age": 33,
-    "Weight": 55.4,
-    "Height": 171,
-    "Sex": "M"
-  },
-  {
-    "JobTitle": {
       "JobTitle": "Janitor",
       "Salary": 25000
     },

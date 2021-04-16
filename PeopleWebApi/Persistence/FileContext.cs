@@ -7,7 +7,7 @@ namespace PeopleWebApi.Persistence
 {
     public class FileContext
     {
-        public IList<Family> Families { get; private set; }
+        // public IList<Family> Families { get; private set; }
         public IList<Adult> Adults { get; private set; }
         public IList<User> Users { get; private set; }
 
@@ -17,7 +17,7 @@ namespace PeopleWebApi.Persistence
 
         public FileContext()
         {
-            Families = File.Exists(familiesFile) ? ReadData<Family>(familiesFile) : new List<Family>();
+            // Families = File.Exists(familiesFile) ? ReadData<Family>(familiesFile) : new List<Family>();
             Adults = File.Exists(adultsFile) ? ReadData<Adult>(adultsFile) : new List<Adult>();
             Users = File.Exists(usersFile) ? ReadData<User>(usersFile) : new List<User>();
         }
@@ -33,14 +33,14 @@ namespace PeopleWebApi.Persistence
         public void SaveChanges()
         {
             // storing families
-            string jsonFamilies = JsonSerializer.Serialize(Families, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-            using (StreamWriter outputFile = new StreamWriter(familiesFile, false))
-            {
-                outputFile.Write(jsonFamilies);
-            }
+            // string jsonFamilies = JsonSerializer.Serialize(Families, new JsonSerializerOptions
+            // {
+            //     WriteIndented = true
+            // });
+            // using (StreamWriter outputFile = new StreamWriter(familiesFile, false))
+            // {
+            //     outputFile.Write(jsonFamilies);
+            // }
 
             // storing persons
             string jsonAdults = JsonSerializer.Serialize(Adults, new JsonSerializerOptions
