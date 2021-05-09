@@ -1,21 +1,7 @@
 [
   {
     "JobTitle": {
-      "JobTitle": "lawnmower",
-      "Salary": 0
-    },
-    "id": 46516,
-    "firstName": "Jack",
-    "lastName": "Field",
-    "HairColor": "black",
-    "EyeColor": "blue",
-    "Age": 50,
-    "Weight": 85,
-    "Height": 179,
-    "Sex": "M"
-  },
-  {
-    "JobTitle": {
+      "Id": 1,
       "JobTitle": "Office Clerk",
       "Salary": 0
     },
@@ -31,21 +17,7 @@
   },
   {
     "JobTitle": {
-      "JobTitle": "Writer",
-      "Salary": 0
-    },
-    "id": 71565,
-    "firstName": "P.",
-    "lastName": "Howard",
-    "HairColor": "Leverpostej",
-    "EyeColor": "Brown",
-    "Age": 46,
-    "Weight": 102.5,
-    "Height": 164,
-    "Sex": "F"
-  },
-  {
-    "JobTitle": {
+      "Id": 2,
       "JobTitle": "Elvis-imitator",
       "Salary": 0
     },
@@ -61,6 +33,7 @@
   },
   {
     "JobTitle": {
+      "Id": 3,
       "JobTitle": "Casino Host",
       "Salary": 0
     },
@@ -76,6 +49,7 @@
   },
   {
     "JobTitle": {
+      "Id": 4,
       "JobTitle": "Dentist",
       "Salary": 0
     },
@@ -91,6 +65,7 @@
   },
   {
     "JobTitle": {
+      "Id": 5,
       "JobTitle": "Web Administrator",
       "Salary": 0
     },
@@ -106,6 +81,7 @@
   },
   {
     "JobTitle": {
+      "Id": 6,
       "JobTitle": "Janitor",
       "Salary": 25000
     },
@@ -117,6 +93,38 @@
     "Age": 52,
     "Weight": 56.8,
     "Height": 172,
+    "Sex": "F"
+  },
+  {
+    "JobTitle": {
+      "Id": 7,
+      "JobTitle": "lawnmower",
+      "Salary": 5000
+    },
+    "id": 46516,
+    "firstName": "Jack",
+    "lastName": "Field",
+    "HairColor": "black",
+    "EyeColor": "blue",
+    "Age": 50,
+    "Weight": 85,
+    "Height": 179,
+    "Sex": "M"
+  },
+  {
+    "JobTitle": {
+      "Id": 85,
+      "JobTitle": "Writer",
+      "Salary": 45000
+    },
+    "id": 71565,
+    "firstName": "P.",
+    "lastName": "Howard",
+    "HairColor": "Leverpostej",
+    "EyeColor": "Brown",
+    "Age": 46,
+    "Weight": 102.5,
+    "Height": 164,
     "Sex": "F"
   }
 ]

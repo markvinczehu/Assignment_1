@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Options;
-using System.Text;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Cryptography;
 using PeopleWebApi.Models;
-using PeopleWebApi.Persistence;
 using PeopleWebApi.Services;
 
 namespace PeopleWebApi.Controllers
@@ -30,12 +19,12 @@ namespace PeopleWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<User>> ValidateUser([FromQuery] string username, [FromQuery] string password)
+        public async Task<ActionResult<User>> ValidateUser([FromQuery] string? username, [FromQuery] string? password)
         {
             Console.WriteLine("Logging " + username + " in...");
             try
             {
-                var user = await userService.ValidateUserAsync(username, password);
+                User user = userService.ValidateUser(username, password);
                 return Ok(user);
             }
             catch (Exception e)
@@ -44,31 +33,17 @@ namespace PeopleWebApi.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<ActionResult<User>> GetUsers()
-        {
-            try {
-                IList<User> users = await userService.GetUsersAsync();
-                return Ok(users);
-            } catch (Exception e) {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
-
         [HttpPost]
         public async Task<ActionResult<User>> AddUser([FromBody] User user)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                userService.AddUser(user);
+                return Ok(user);
             }
-            try {
-                User added = await userService.AddUserAsync(user);
-                Console.WriteLine("New user added: " + user.UserName);
-                return Created($"/{added.UserName}",added);
-            } catch (Exception e) {
-                Console.WriteLine(e);
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
                 return StatusCode(500, e.Message);
             }
         }

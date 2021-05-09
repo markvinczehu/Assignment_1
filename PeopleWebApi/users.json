@@ -1,12 +1,17 @@
 [
   {
-    "UserName": "Mark",
-    "Password": "123456",
-    "Role": "Someone"
+    "Id": 1,
+    "UserName": "mark",
+    "Password": "123456"
   },
   {
+    "Id": 2,
     "UserName": "Bob",
-    "Password": "56789",
-    "Role": "Some"
+    "Password": "56789"
+  },
+  {
+    "Id": 3,
+    "UserName": "new",
+    "Password": "oldold"
   }
 ]

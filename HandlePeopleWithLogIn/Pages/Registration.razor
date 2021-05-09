@@ -15,9 +15,6 @@
     <div class="form-group"> Password:<br/>
         <InputText type="password" rows="4" @bind-Value="newUserItem.Password"/>
     </div>
-    <div class="form-group"> Role:<br/>
-        <InputText rows="4" @bind-Value="newUserItem.Role"/>
-    </div>
     <p class="actions">
         <button class="btn btn-outline-dark"type="submit">Register</button>
     </p>
@@ -37,8 +34,7 @@
         newUserItem = new User
         {
             UserName = "",
-            Password = "",
-            Role = ""
+            Password = ""
         };
     }
 

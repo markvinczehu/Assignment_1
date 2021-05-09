@@ -16,13 +16,13 @@
     Filter by Lastname: <input type="text" @oninput="@(arg => FilterByLastName(arg))" style="width: 150px"/>
 </p>
 
-@if (adultsToShow == null)
+@if (allAdults == null)
     {
     <p>
         <em>Loading...</em>
     </p>
     } 
-    else if (!adultsToShow.Any())
+    else if (!allAdults.Any())
     {
         <p>
             <em>No Adult items exist. Please add some.</em>
@@ -43,7 +43,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach (var item in adultsToShow)
+            @foreach (Adult item in adultsToShow)
             {
                 <tr>
                     <td>@item.Id</td>
@@ -86,17 +86,17 @@
         </table>
     }
 @code {
-    private IList<Adult> allAdults;
-    private IList<Adult> adultsToShow;
+    private List<Adult> allAdults = new List<Adult>();
+    private List<Adult> adultsToShow = new List<Adult>();
 
-    private int? filterById;
-    private string filterByFirstName;
-    private string filterByLastName;
+    private int? filterById = null;
+    private string filterByFirstName = "";
+    private string filterByLastName = "";
 
     protected override async Task OnInitializedAsync()
     {
         allAdults = await DataService.GetAdultAsync();
-        adultsToShow = allAdults;
+        ExecuteFilter();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -159,8 +159,8 @@
     {
         adultsToShow = allAdults.Where(t => 
             (filterById != null && t.Id == filterById || filterById == null) &&
-            (filterByFirstName != null && t.FirstName == filterByFirstName || filterByFirstName == null) && 
-            (filterByLastName != null && t.LastName == filterByLastName || filterByLastName == null)
+            (!filterByLastName.Equals("") && t.LastName.Contains(filterByLastName) || filterByLastName.Equals("")) &&
+            (!filterByFirstName.Equals("") && t.FirstName.Contains(filterByFirstName) || filterByFirstName.Equals(""))
             ).ToList();
     }
 

@@ -7,6 +7,7 @@ using PeopleWebApi.Persistence;
 
 namespace PeopleWebApi.Services
 {
+    [Obsolete]
     public class DataService : IDataService
     {
         private IList<Adult> adults;
@@ -17,6 +18,7 @@ namespace PeopleWebApi.Services
             FileContext = new FileContext();
             adults = FileContext.Adults;
         }
+        
         public async Task<IList<Adult>> GetAdultAsync()
         {
             return adults;

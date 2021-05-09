@@ -1,15 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Blazored.LocalStorage;
 using HandlePeopleWithLogIn.Auth;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,20 +24,13 @@ namespace HandlePeopleWithLogIn
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddScoped<ICloudService, CloudService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             services.AddScoped<IUserService, UserService>();
-            services.AddAuthorization(options => {
-                options.AddPolicy("MustBeSomeone",  a => 
-                    a.RequireAuthenticatedUser().RequireClaim("Role", "Someone"));
-                //
-                // options.AddPolicy("SecurityLevel2", policy =>
-                //     policy.RequireAuthenticatedUser().RequireAssertion(context => {
-                //         Claim levelClaim = context.User.FindFirst(claim => claim.Type.Equals("Level"));
-                //         if (levelClaim == null) return false;
-                //         return int.Parse(levelClaim.Value) >= 2;
-                //     }));
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("LoggedIn", a => a.RequireAuthenticatedUser());
             });
-            services.AddScoped<ICloudService, CloudService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

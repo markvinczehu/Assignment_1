@@ -6,10 +6,11 @@ namespace HandlePeopleWithLogIn.Data
 {
     public interface ICloudService
     {
-        Task<IList<Adult>> GetAdultAsync();
-        Task<Adult> AddAdultAsync(Adult adult);
+        Task<List<Adult>> GetAdultAsync();
+        Task AddAdultAsync(Adult adult);
         Task RemoveAdultAsync(int Id);
-        Task<Adult> UpdateAdultAsync(Adult adult);
+        Task UpdateAdultAsync(Adult adult);
         Task<Adult> GetAsync(int Id);
+        Task<List<Job>> GetJobsAsync();
     }
 }

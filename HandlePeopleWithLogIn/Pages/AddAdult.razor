@@ -12,37 +12,48 @@
         <EditForm Model="@newAdultItem" OnValidSubmit="@AddNewAdult">
             <DataAnnotationsValidator/>
             <ValidationSummary/>
-            <div class="form-group"> ID:<br/>
+            <div class="form-group">
+                ID:<br/>
                 <InputNumber @bind-Value="newAdultItem.Id"/>
             </div>
-            <div class="form-group"> Firstname:<br/>
+            <div class="form-group">
+                Firstname:<br/>
                 <InputText rows="4" @bind-Value="newAdultItem.FirstName"/>
             </div>
-            <div class="form-group"> Lastname:<br/>
+            <div class="form-group">
+                Lastname:<br/>
                 <InputText rows="4" @bind-Value="newAdultItem.LastName"/>
             </div>
-            <div class="form-group"> Job title:<br/>
+            <div class="form-group">
+                Job title:<br/>
                 <InputText rows="4" @bind-Value="newAdultItem.JobTitle.JobTitle"/>
             </div>
-            <div class="form-group"> Salary:<br/>
+            <div class="form-group">
+                Salary:<br/>
                 <InputNumber rows="4" @bind-Value="newAdultItem.JobTitle.Salary"/>
             </div>
-            <div class="form-group"> Eye colour:<br/>
+            <div class="form-group">
+                Eye colour:<br/>
                 <InputText rows="4" @bind-Value="newAdultItem.EyeColor"/>
             </div>
-            <div class="form-group"> Hair colour:<br/>
+            <div class="form-group">
+                Hair colour:<br/>
                 <InputText rows="4" @bind-Value="newAdultItem.HairColor"/>
             </div>
-            <div class="form-group"> Age:<br/>
+            <div class="form-group">
+                Age:<br/>
                 <InputNumber rows="4" @bind-Value="newAdultItem.Age"/>
             </div>
-            <div class="form-group"> Weight:<br/>
+            <div class="form-group">
+                Weight:<br/>
                 <InputNumber rows="4" @bind-Value="newAdultItem.Weight"/>
             </div>
-            <div class="form-group"> Height:<br/>
+            <div class="form-group">
+                Height:<br/>
                 <InputNumber rows="4" @bind-Value="newAdultItem.Height"/>
             </div>
-            <div class="form-group"> Sex:<br/>
+            <div class="form-group">
+                Sex:<br/>
                 <InputText rows="4" @bind-Value="newAdultItem.Sex"/>
             </div>
             <p class="actions">
@@ -51,30 +62,34 @@
         </EditForm>
     </Authorized>
 </AuthorizeView>
-@code {
-    private Adult newAdultItem;
 
+@code {
+    private Adult newAdultItem = new Adult();
+
+    protected override Task OnInitializedAsync()
+    {
+        SetupNewAdult();
+        return base.OnInitializedAsync();
+    }
+    
     private async Task SetupNewAdult()
     {
         newAdultItem = new Adult();
         newAdultItem.Id = 0;
         newAdultItem.FirstName = "";
         newAdultItem.LastName = "";
-        newAdultItem.JobTitle = new Job();
-        newAdultItem.JobTitle.Salary = 0;
-        newAdultItem.JobTitle.JobTitle = "";
+        newAdultItem.JobTitle = new Job
+        {
+            Salary = 0,
+            JobTitle = "",
+            Id = 0
+        };
         newAdultItem.Age = 0;
         newAdultItem.Weight = 0;
         newAdultItem.HairColor = "";
         newAdultItem.EyeColor = "";
         newAdultItem.Height = 0;
         newAdultItem.Sex = "";
-    }
-
-    protected override Task OnInitializedAsync()
-    {
-        SetupNewAdult();
-        return base.OnInitializedAsync();
     }
 
     private void AddNewAdult()

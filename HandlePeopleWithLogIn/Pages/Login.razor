@@ -42,9 +42,10 @@
     private async Task PerformLogin() {
         errorMessage = "";
         try {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLoginAsync(username, password);
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
             username = "";
             password = "";
+            NavigationManager.NavigateTo("/");
         } catch (Exception e) {
             errorMessage = e.Message;
         }

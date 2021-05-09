@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using PeopleWebApi.Models;
+﻿using PeopleWebApi.Models;
 
 namespace PeopleWebApi.Services
 {
     public interface IUserService
     {
-        Task<IList<User>> GetUsersAsync();
-        Task<User> ValidateUserAsync(string userName, string password);
-        Task<User> AddUserAsync(User user);
+        User ValidateUser(string username, string password);
+        void AddUser(User user);
+        void UpdateUser(User user);
+        void RemoveUser(int userId);
     }
 }

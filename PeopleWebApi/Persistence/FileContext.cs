@@ -11,7 +11,7 @@ namespace PeopleWebApi.Persistence
         public IList<Adult> Adults { get; private set; }
         public IList<User> Users { get; private set; }
 
-        private readonly string familiesFile = "families.json";
+        // private readonly string familiesFile = "families.json";
         private readonly string adultsFile = "adults.json";
         private readonly string usersFile = "users.json";
 

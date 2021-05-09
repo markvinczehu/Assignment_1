@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using PeopleWebApi.Models;
+using PeopleWebApi.Persistence;
 
 namespace PeopleWebApi
 {
@@ -14,6 +13,25 @@ namespace PeopleWebApi
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            
+            using (AdultDbContext adbc = new AdultDbContext())
+            {
+                if (!adbc.Adults.Any())
+                {
+                    Seed(adbc);
+                }
+            }
+        }
+        
+        private static void Seed(AdultDbContext adbc)
+        {
+            FileContext fileContext = new FileContext();
+            IList<Adult> adults = new List<Adult>();
+            adults = fileContext.Adults;
+
+            adbc.Add(adults);
+            
+            adbc.SaveChanges();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

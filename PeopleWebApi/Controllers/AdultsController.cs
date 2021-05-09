@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Policy;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PeopleWebApi.Models;
-using PeopleWebApi.Services;
+using PeopleWebApi.Repository;
 
 namespace PeopleWebApi.Controllers
 {
@@ -12,16 +11,16 @@ namespace PeopleWebApi.Controllers
     [Route("[controller]")]
     public class AdultsController : ControllerBase
     {
-        private IDataService dataService;
+        private IAdultRepository dataService;
 
-        public AdultsController(IDataService dataService) {
+        public AdultsController(IAdultRepository dataService) {
             this.dataService = dataService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IList<Adult>>> GetAdults() {
             try {
-                IList<Adult> adults = await dataService.GetAdultAsync();
+                IList<Adult> adults = await dataService.GetAdultsAsync();
                 return Ok(adults);
             } catch (Exception e) {
                 Console.WriteLine(e);
@@ -35,7 +34,7 @@ namespace PeopleWebApi.Controllers
         {
             try
             {
-                Adult adult = await dataService.GetAdultsAsync(id);
+                Adult adult = await dataService.GetAdultByIdAsync(id);
                 return Ok(adult);
             }
             catch (Exception e)
@@ -47,41 +46,37 @@ namespace PeopleWebApi.Controllers
 
         [HttpDelete]
         [Route("{id:int}")]
-        public async Task<ActionResult> DeleteAdult([FromRoute] int id) {
-            try {
+        public async Task DeleteAdult([FromRoute] int id) {
+            try
+            {
                 await dataService.RemoveAdultAsync(id);
-                return Ok();
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine(e);
-                return StatusCode(500, e.Message);
             }
         }
 
         [HttpPost]
-        public async Task<ActionResult<Adult>> AddAdult([FromBody] Adult adult) {
+        public async Task AddAdult([FromBody] Adult adult) {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                Console.WriteLine(BadRequest(ModelState));
             }
             try {
-                Adult added = await dataService.AddAdultAsync(adult);
-                Console.WriteLine("New adult added: " + adult.Id);
-                return Created($"/{added.Id}",added);
+                await dataService.AddAdultAsync(adult);
             } catch (Exception e) {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
+                Console.WriteLine(e.Message);
             }
         }
 
         [HttpPatch]
-        [Route("{id:int}")]
-        public async Task<ActionResult<Adult>> UpdateAdult([FromBody] Adult adult) {
+        public async Task UpdateAdult([FromBody] Adult adult) {
             try {
-                Adult updatedAdult = await dataService.UpdateAdultAsync(adult);
-                return Ok(updatedAdult); 
+                await dataService.UpdateAdultAsync(adult);
             } catch (Exception e) {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
+                Console.WriteLine(e.Message);
+                StatusCode(500, e.Message);
             }
         }
     }

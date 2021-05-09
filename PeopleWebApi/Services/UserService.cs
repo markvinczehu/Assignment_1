@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using PeopleWebApi.Models;
 using PeopleWebApi.Persistence;
 
@@ -17,26 +16,51 @@ namespace PeopleWebApi.Services
             fileContext = new FileContext();
             users = fileContext.Users;
         }
-        public async Task<IList<User>> GetUsersAsync()
+
+        public User ValidateUser(string userName, string password)
         {
-            return users;
-        }
-        
-        public async Task<User> ValidateUserAsync(string userName, string password)
-        {
-            User user = users.FirstOrDefault(u => u.UserName.Equals(userName) && u.Password.Equals(password));
-            if (user != null)
-            {
-                return user;
-            } 
-            throw new Exception("User not found");
+            var user = users.First(u => u.UserName.Equals(userName));
+            if (user == null) throw new Exception("User does not exist!");
+            if (!user.Password.Equals(password)) throw new Exception("Incorrect password!");
+            return user;
         }
 
-        public async Task<User> AddUserAsync(User user)
+        public void AddUser(User user)
         {
+            User? first = null;
+            try
+            {
+                first = users.First(u => u.UserName.Equals(user.UserName));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            if (first != null)
+            {
+                throw new Exception("Username is taken!");
+            }
+
+            int max = users.Max(u => u.Id);
+            user.Id = (++max);
             users.Add(user);
             fileContext.SaveChanges();
-            return user;
+        }
+        
+        public void UpdateUser(User user)
+        {
+            User toUpdate = users.First(u => u.Id == user.Id);
+            toUpdate.Password = user.Password;
+            toUpdate.UserName = user.UserName;
+            fileContext.SaveChanges();
+        }
+
+        public void RemoveUser(int userId)
+        {
+            User ToRemove = users.First(u => u.Id == userId);
+            users.Remove(ToRemove);
+            fileContext.SaveChanges();
         }
     }
 }

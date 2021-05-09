@@ -19,24 +19,34 @@ namespace HandlePeopleWithLogIn.Data
             client = new HttpClient();
         }
 
-        public async Task<IList<Adult>> GetAdultAsync()
+        public async Task<List<Adult>> GetAdultAsync()
         {
-            var stringAsync = await client.GetStringAsync(uri + "/adults");
-            IList<Adult> result = JsonSerializer.Deserialize<IList<Adult>>(stringAsync, new JsonSerializerOptions
+            HttpResponseMessage response = await client.GetAsync(uri + "/adults");
+            if (!response.IsSuccessStatusCode)
             {
-                PropertyNameCaseInsensitive = true
+                throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
+            }
+            
+            string result = await response.Content.ReadAsStringAsync();
+            List<Adult> adults = JsonSerializer.Deserialize<List<Adult>>(result, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
-            return result;
+            return adults;
         }
 
-        public async Task<Adult> AddAdultAsync(Adult adult)
+        public async Task AddAdultAsync(Adult adult)
         {
             var adultAsJson = JsonSerializer.Serialize(adult);
             HttpContent content = new StringContent(adultAsJson,
                 Encoding.UTF8,
                 "application/json");
-            await client.PostAsync(uri + "/adults", content);
-            return adult;
+            HttpResponseMessage response = await client.PostAsync(uri + "/adults", content);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
+            }
         }
 
         public async Task RemoveAdultAsync(int Id)
@@ -44,14 +54,17 @@ namespace HandlePeopleWithLogIn.Data
             await client.DeleteAsync($"{uri}/adults/{Id}");
         }
 
-        public async Task<Adult> UpdateAdultAsync(Adult adult)
+        public async Task UpdateAdultAsync(Adult adult)
         {
             var adultAsJson = JsonSerializer.Serialize(adult);
             HttpContent content = new StringContent(adultAsJson,
                 Encoding.UTF8,
                 "application/json");
-            await client.PatchAsync($"{uri}/adults/{adult.Id}", content);
-            return adult;
+            HttpResponseMessage response = await client.PatchAsync($"{uri}/adults/{adult.Id}", content);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
+            }
         }
 
         public async Task<Adult> GetAsync(int Id)
@@ -63,26 +76,24 @@ namespace HandlePeopleWithLogIn.Data
             });
             return adult;
         }
-
-        public async Task<User> ValidateUser(string username, string password)
+        
+        public async Task<List<Job>> GetJobsAsync()
         {
-            HttpResponseMessage response = await client.GetAsync(uri + $"/users?username={username}&password={password}");
-            if (response.StatusCode == HttpStatusCode.OK)
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(uri + "/jobs");
+            
+            if (!response.IsSuccessStatusCode)
             {
-                string userAsJson = await response.Content.ReadAsStringAsync();
-                User resultUser = JsonSerializer.Deserialize<User>(userAsJson);
-                return resultUser;
-            } 
-            throw new Exception("User not found");
-        }
+                throw new Exception($"Error: {response.StatusCode}, {response.ReasonPhrase}");
+            }
 
-        public async Task AddUser(User user)
-        {
-            var userAsJson = JsonSerializer.Serialize(user);
-            HttpContent content = new StringContent(userAsJson,
-                Encoding.UTF8,
-                "application/json");
-            await client.PostAsync(uri + "/users", content);
+            string result = await response.Content.ReadAsStringAsync();
+            List<Job> jobs = JsonSerializer.Deserialize<List<Job>>(result, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                PropertyNameCaseInsensitive = true
+            });
+            return jobs;
         }
     }
 }
